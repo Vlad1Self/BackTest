@@ -29,7 +29,6 @@ class OrderResource extends JsonResource
             'order_date' => $this->created_at->format('Y-m-d H:i:s'), // Дата заказа
             'products' => $productsNames, // Перечисленные названия товаров
             'total_price' => $totalItemsPrice, // Общая стоимость товаров в заказе
-            'sum_total_price' => $this->total_price, // Общая стоимость всех товаров в заказе
             'items' => OrderItemResource::collection($this->orderItems), // Коллекция элементов заказа
         ];
     }
