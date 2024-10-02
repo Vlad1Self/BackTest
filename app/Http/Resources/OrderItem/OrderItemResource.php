@@ -17,9 +17,9 @@ class OrderItemResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->order->user_id,
-            'order_uuid' => $this->order->uuid, // Получаем uuid заказа
-            'order_created_at' => $this->order->created_at->format('Y-m-d H:i:s'), // Получаем дату создания заказа
-            'product_name' => $this->product->name, // Используем название продукта
+            'order_uuid' => $this->order->uuid,
+            'order_created_at' => $this->order->created_at->format('Y-m-d H:i:s'),
+            'product_name' => $this->product->name,
             'quantity' => $this->quantity,
             'total_price' => $this->total_price,
         ];

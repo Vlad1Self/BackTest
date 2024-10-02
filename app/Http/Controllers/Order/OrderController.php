@@ -9,13 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\StoreOrderRequest;
 use App\Http\Resources\Order\OrderResource;
 use App\Http\Resources\OrderItem\OrderItemResource;
-use App\Models\Order;
 use App\Services\Order\OrderService;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -35,8 +32,6 @@ class OrderController extends Controller
 
         return OrderItemResource::collection($orderItems);
     }
-
-
 
     public function store(StoreOrderRequest $request): JsonResponse|OrderResource
     {
@@ -63,4 +58,14 @@ class OrderController extends Controller
         return response()->json(['data' => 'Order deleted']);
     }
 
+    public function getTotalOrderSumByUserId(int $userId): JsonResponse
+    {
+        try {
+            $totalSum = $this->orderService->getTotalOrderSumByUserId($userId);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
+
+        return response()->json(['total_order_sum' => $totalSum]);
+    }
 }

@@ -15,4 +15,5 @@ interface OrderContract
     public function indexOrder(IndexOrderDTO $data, int $userId): LengthAwarePaginator;
     public function showOrder(ShowOrderDTO $data): Order;
     public function deleteOrder(Order $order): bool;
+    public function getTotalOrderSumByUserId(int $userId): float;
 }

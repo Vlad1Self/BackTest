@@ -10,5 +10,4 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 interface ProductContract
 {
     public function indexProduct(IndexProductDTO $data): LengthAwarePaginator;
-    public function showProduct(ShowProductDTO $data): Product;
 }

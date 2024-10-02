@@ -19,7 +19,6 @@ class OrderFactory extends Factory
     {
         return [
             'user_id' => User::query()->inRandomOrder()->first()->id,
-            'sum_total_price' => $this->faker->numberBetween(100, 1000),
         ];
     }
 }

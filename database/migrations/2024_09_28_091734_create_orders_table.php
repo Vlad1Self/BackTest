@@ -18,7 +18,6 @@ return new class extends Migration
                 ->nullable()->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->decimal('sum_total_price', 10, 2)->default(0);
             $table->timestamps();
         });
     }

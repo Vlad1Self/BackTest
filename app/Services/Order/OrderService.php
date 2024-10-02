@@ -34,17 +34,6 @@ readonly class OrderService
             throw $exception;
         }
     }
-
-    public function showOrder(ShowOrderDTO $data): Order
-    {
-        try {
-            return $this->orderRepository->showOrder($data);
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
-            throw $exception;
-        }
-    }
-
     public function deleteOrder(ShowOrderDTO $data): bool
     {
         try {
@@ -55,11 +44,20 @@ readonly class OrderService
         }
 
         if (!$order) {
-            throw new \Exception('Order not found');
+            throw new \Exception('Такого заказа не существует');
         }
 
         try {
             return $this->orderRepository->deleteOrder($order);
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            throw $exception;
+        }
+    }
+    public function getTotalOrderSumByUserId(int $userId): float
+    {
+        try {
+            return $this->orderRepository->getTotalOrderSumByUserId($userId);
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             throw $exception;
